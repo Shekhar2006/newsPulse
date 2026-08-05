@@ -1,6 +1,3 @@
 export const getHealth = (req, res) => {
-  res.status(200).json({
-    success: true,
-    message: "NewsPulse API is healthy 🚀",
-  });
+  throw new Error("Testing erorer")
 };
