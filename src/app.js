@@ -19,7 +19,7 @@ app.use(morgan("dev"));
 
 // routes
 
-app.use("/health", healthRoute);
+app.use("/api/health", healthRoute);
 app.use("/api/news", newsRoute);
 app.use("/api/users", userRoute);
 app.use("/api/mail", mailRoute);
