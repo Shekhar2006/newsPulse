@@ -4,7 +4,7 @@ import AppError from "../errors/AppError.js";
 
 
 export const getTopHeadlines = async (req, res) => {
-  const { category = "general" } = req.query;
+  const { category = "top" } = req.query;
   
   if(!NEWS_CATEGORIES.includes(category)){
     throw new AppError("Invalid news category.", 400);

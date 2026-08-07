@@ -1,18 +1,28 @@
 import api from "../config/axios.js";
 import { env } from "../config/env.js";
 import { mapNewsArticle } from "../mappers/news.mapper.js";
+import AppError from "../errors/AppError.js";
 
-export const fetchTopHeadlines = async () => {
-  const response = await api.get("/top-headlines", {
-    params: {
-      category: "general",
-      lang: "en",
-      max: 10,
-      apikey: env.gnewsApiKey,
-    },
-  });
+export const fetchTopHeadlines = async ({ category = "top" }) => {
+  try {
+    const response = await api.get("/news", {
+      params: {
+        apikey: env.newsdataApiKey,
+        category,
+        language: "en",
+      },
+    });
 
-  const articles = response.data.articles.map(mapNewsArticle);
+    return response.data.results.map(mapNewsArticle);
 
-  return articles;
+  } catch (error) {
+    console.error(error.response?.data);
+
+    throw new AppError(
+      error.response?.data?.results?.message ||
+        error.response?.data?.message ||
+        "Failed to fetch news",
+      error.response?.status || 500
+    );
+  }
 };

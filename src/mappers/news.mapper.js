@@ -1,8 +1,8 @@
 export const mapNewsArticle = (article) => ({
-    title: article.title,
-    description: article.description,
-    image: article.image,
-    url: article.url,
-    source: article.source.name,
-    publishedAt: article.publishedAt,
+  title: article.title,
+  description: article.description,
+  image: article.image_url,
+  url: article.link,
+  source: article.source_name,
+  publishedAt: article.pubDate,
 });

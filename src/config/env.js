@@ -3,8 +3,8 @@ import "dotenv/config";
 const requiredEnvVars = [
     "PORT",
     "NODE_ENV",
-    "GNEWS_API_KEY",
-    "GNEWS_BASE_URL",
+    "NEWSDATA_API_KEY",
+    "NEWSDATA_BASE_URL",
 ];
 
 for (const envVar of requiredEnvVars) {
@@ -16,6 +16,6 @@ for (const envVar of requiredEnvVars) {
 export const env = {
     port: process.env.PORT,
     nodeEnv: process.env.NODE_ENV,
-    gnewsApiKey: process.env.GNEWS_API_KEY,
-    gnewsBaseUrl: process.env.GNEWS_BASE_URL,
+    newsdataApiKey: process.env.NEWSDATA_API_KEY,
+    newsdataBaseUrl: process.env.NEWSDATA_BASE_URL,
 };

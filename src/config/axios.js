@@ -2,7 +2,7 @@ import axios from "axios";
 import { env } from "./env.js";
 
 const api = axios.create({
-    baseURL: env.gnewsBaseUrl,
+    baseURL: env.newsdataBaseUrl,
     timeout: 10000,
 });
 

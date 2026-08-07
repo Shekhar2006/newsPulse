@@ -5,6 +5,8 @@ import helmet from "helmet";
 import morgan from "morgan";
 import healthRoute from "./routes/health.route.js";
 import newsRoute from "./routes/news.route.js";
+import userRoute from "./routes/user.route.js";
+import mailRoute from "./routes/mail.route.js";
 import errorHandler from "./middleware/error.middleware.js";
 
 
@@ -19,6 +21,9 @@ app.use(morgan("dev"));
 
 app.use("/health", healthRoute);
 app.use("/api/news", newsRoute);
+app.use("/api/users", userRoute);
+app.use("/api/mail", mailRoute);
+
 
 app.use(errorHandler);
 
