@@ -16,6 +16,7 @@ const app = express();
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("dev"));
+app.use(cors());
 
 // routes
 
