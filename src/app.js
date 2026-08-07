@@ -24,6 +24,14 @@ app.use("/api/news", newsRoute);
 app.use("/api/users", userRoute);
 app.use("/api/mail", mailRoute);
 
+app.get("/", (req, res) => {
+  res.json({
+    success: true,
+    message: "Welcome to NewsPulse API 🚀",
+    version: "1.0.0",
+    documentation: "/api/health",
+  });
+});
 
 app.use(errorHandler);
 

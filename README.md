@@ -1,23 +1,41 @@
 # 📰 NewsPulse
 
-A backend-powered personalized newsletter application that fetches the latest news based on user interests and automatically sends beautifully formatted daily or weekly newsletters via email.
+A production-ready backend application that delivers **personalized daily and weekly email newsletters** based on users' preferred news categories.
 
-Built using **Node.js**, **Express.js**, **PostgreSQL**, **Prisma ORM**, **NewsData.io API**, **Nodemailer**, **Node Cron**, and **Docker**.
+NewsPulse fetches the latest headlines from **NewsData.io**, stores user subscriptions in **PostgreSQL**, and automatically sends beautiful HTML newsletters using **Node Cron** and **Nodemailer**.
 
 ---
 
-## ✨ Features
+## 🚀 Live Demo
 
-- 📰 Fetch latest news by category
-- 📧 Email newsletter with responsive HTML template
-- ⏰ Automatic Daily & Weekly newsletters using Cron Jobs
+### Live API
+
+```
+https://newspulse-production-8428.up.railway.app
+```
+
+### Health Check
+
+```
+https://newspulse-production-8428.up.railway.app/api/health
+```
+
+---
+
+# ✨ Features
+
+- 📰 Latest news from NewsData.io
+- 📧 Beautiful HTML email newsletters
 - 👤 User subscription management
-- 📂 Multiple category subscriptions
-- 🛡 Request validation using Zod
-- 🚨 Global error handling with custom AppError
-- 🗄 PostgreSQL database with Prisma ORM
-- 🐳 Dockerized application
-- 🌍 REST API architecture
+- 📂 Multiple news categories
+- ⏰ Daily & Weekly automated newsletters
+- 🗄 PostgreSQL database
+- ⚡ Prisma ORM
+- 🛡 Zod request validation
+- 🚨 Global error handling
+- 🐳 Docker support
+- ☁ Railway deployment
+- 🌍 RESTful API architecture
 
 ---
 
@@ -27,7 +45,7 @@ Built using **Node.js**, **Express.js**, **PostgreSQL**, **Prisma ORM**, **NewsD
                 Client
                    │
                    ▼
-              Express Routes
+             Express Routes
                    │
                    ▼
              Controllers
@@ -42,19 +60,18 @@ Built using **Node.js**, **Express.js**, **PostgreSQL**, **Prisma ORM**, **NewsD
         Prisma          News Mapper
                    │
                    ▼
-             HTML Template
+          Newsletter Template
                    │
                    ▼
               Nodemailer
                    │
                    ▼
                  Email
-
 ```
 
 ---
 
-# 📁 Project Structure
+# 📁 Folder Structure
 
 ```
 newsPulse/
@@ -87,88 +104,100 @@ newsPulse/
 
 ---
 
-# ⚙ Tech Stack
+# 🛠 Tech Stack
 
-### Backend
+## Backend
 
 - Node.js
 - Express.js
 
-### Database
+## Database
 
 - PostgreSQL
 - Prisma ORM
 
-### Email
-
-- Nodemailer
-
-### Scheduler
-
-- Node Cron
-
-### Validation
+## Validation
 
 - Zod
 
-### External API
+## Email
+
+- Nodemailer
+
+## Scheduler
+
+- Node Cron
+
+## External API
 
 - NewsData.io
 
-### Containerization
+## Deployment
+
+- Railway
+
+## Containerization
 
 - Docker
 - Docker Compose
 
 ---
 
-# 🚀 Getting Started
+# ⚙ Environment Variables
 
-## Clone Repository
+Create a `.env` file:
 
-```bash
-git clone https://github.com/yourusername/newspulse.git
+```env
+PORT=5000
 
-cd newspulse
+NODE_ENV=development
+
+DATABASE_URL=your_database_url
+
+EMAIL_USER=your_email@gmail.com
+
+EMAIL_PASS=your_gmail_app_password
+
+NEWSDATA_API_KEY=your_newsdata_api_key
+
+NEWSDATA_BASE_URL=https://newsdata.io/api/1
 ```
 
 ---
 
-## Install Dependencies
+# 🚀 Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/Shekhar2006/newsPulse.git
+```
+
+Go inside project
+
+```bash
+cd newsPulse
+```
+
+Install dependencies
 
 ```bash
 npm install
 ```
 
----
-
-## Configure Environment Variables
-
-Create a `.env` file.
-
-```env
-PORT=5000
-
-DATABASE_URL=
-
-EMAIL_USER=
-
-EMAIL_PASS=
-
-NEWSDATA_API_KEY=
-```
-
----
-
-## Generate Prisma Client
+Generate Prisma Client
 
 ```bash
 npx prisma generate
 ```
 
----
+Run database migrations (or push schema)
 
-## Run Development Server
+```bash
+npx prisma db push
+```
+
+Start development server
 
 ```bash
 npm run dev
@@ -178,7 +207,7 @@ npm run dev
 
 # 🐳 Docker
 
-Build Image
+Build and run
 
 ```bash
 docker compose up --build
@@ -194,7 +223,7 @@ http://localhost:5000
 
 # 📬 API Endpoints
 
-## Health
+## Health Check
 
 ```
 GET /api/health
@@ -202,17 +231,17 @@ GET /api/health
 
 ---
 
-## Get News
+## Get Top Headlines
 
 ```
 GET /api/news
 ```
 
-Query Parameters
+Query Parameter
 
-```
-category=technology
-```
+| Name | Example |
+|------|---------|
+| category | technology |
 
 Example
 
@@ -228,7 +257,7 @@ GET /api/news?category=technology
 POST /api/users/subscribe
 ```
 
-Example
+Example Request
 
 ```json
 {
@@ -251,7 +280,7 @@ PUT /api/users/update
 
 ---
 
-## Unsubscribe
+## Unsubscribe User
 
 ```
 DELETE /api/users/unsubscribe
@@ -265,31 +294,41 @@ DELETE /api/users/unsubscribe
 POST /api/mail/newsletter
 ```
 
----
+Example
 
-# ⏰ Scheduled Jobs
-
-### Daily Newsletter
-
-Runs every day at **8:00 AM**
-
----
-
-### Weekly Newsletter
-
-Runs every Sunday at **8:00 AM**
+```json
+{
+  "email":"john@example.com",
+  "category":"technology"
+}
+```
 
 ---
 
-# 📧 Sample Newsletter
+# 📧 Newsletter
 
-The application generates a responsive HTML newsletter containing:
+NewsPulse automatically generates responsive HTML newsletters containing:
 
 - News grouped by category
-- Images
-- Source
-- Publish date
+- Featured images
+- Description
 - Read More button
+- Publication source
+- Publication date
+
+---
+
+# ⏰ Automated Jobs
+
+## Daily Newsletter
+
+Runs every day using Node Cron.
+
+---
+
+## Weekly Newsletter
+
+Runs every week using Node Cron.
 
 ---
 
@@ -303,17 +342,49 @@ The application generates a responsive HTML newsletter containing:
 
 ---
 
-# 🔮 Future Improvements
+# 📷 Screenshots
+
+## API Response
+
+> *(Add screenshot here)*
+
+```
+assets/api-news.png
+```
+
+---
+
+## Newsletter
+
+> *(Add screenshot here)*
+
+```
+assets/newsletter.png
+```
+
+---
+
+## Railway Deployment
+
+> *(Add screenshot here)*
+
+```
+assets/railway.png
+```
+
+---
+
+# 🌟 Future Improvements
 
 - JWT Authentication
 - OAuth Login
 - Redis Caching
 - Admin Dashboard
-- User Preferences
-- Unsubscribe Token
-- Email Queue using BullMQ
+- Email Queue (BullMQ + Redis)
 - Background Workers
-- Unit & Integration Tests
+- Swagger API Documentation
+- Unit Testing
+- Integration Testing
 - CI/CD Pipeline
 
 ---
@@ -324,8 +395,16 @@ The application generates a responsive HTML newsletter containing:
 
 Computer Engineering Student
 
+GitHub:
+
+https://github.com/Shekhar2006
+
+LinkedIn:
+
+> Add your LinkedIn profile here
+
 ---
 
-# 📜 License
+# 📄 License
 
 This project is licensed under the MIT License.
