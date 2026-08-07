@@ -12,6 +12,17 @@ import errorHandler from "./middleware/error.middleware.js";
 
 const app = express();
 
+// welcome msg
+app.get("/", (req, res) => {
+  res.json({
+    success: true,
+    message: "Welcome to NewsPulse API 🚀",
+    version: "1.0.0",
+    documentation: "/api/health",
+  });
+});
+
+
 // middlewares
 app.use(express.json());
 app.use(helmet());
@@ -25,15 +36,7 @@ app.use("/api/news", newsRoute);
 app.use("/api/users", userRoute);
 app.use("/api/mail", mailRoute);
 
-app.get("/", (req, res) => {
-  res.json({
-    success: true,
-    message: "Welcome to NewsPulse API 🚀",
-    version: "1.0.0",
-    documentation: "/api/health",
-  });
-});
-
+// error handler
 app.use(errorHandler);
 
 
